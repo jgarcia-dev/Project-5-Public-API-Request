@@ -5,8 +5,46 @@ let employees;
 
 
 // ------------------------------------------
+//  HELPER FUNCTIONs
+// ------------------------------------------
+
+function showMatches(query) {
+    const employeeCards = [...document.getElementsByClassName('card')];
+    employeeCards.forEach(card => {
+        const employeeName = card.lastElementChild.firstElementChild.textContent.toLowerCase();
+        if (employeeName.includes(query.toLowerCase()) === false) {
+            card.style.display = 'none';
+        } else {
+            card.style.display = 'flex';
+        }
+    }); 
+}
+
+
+// ------------------------------------------
 //  CREATE/ADD ELEMENT FUNCTIONS
 // ------------------------------------------
+
+
+function addSearchBar() {
+    const searchBar = document.createElement('form');
+    searchBar.setAttribute('action', '#');
+    searchBar.setAttribute('method', 'get')
+    const searchBarHTML = `
+        <input type="search" id="search-input" class="search-input" placeholder="Search...">
+        <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
+    `
+    searchBar.insertAdjacentHTML('afterbegin', searchBarHTML);
+    searchContainer.insertAdjacentElement('afterbegin', searchBar);
+
+    const searchField = searchBar.querySelector('#search-input');
+
+    // EVENT lISTENER - search bar submit - initiates search based on search field
+    searchBar.querySelector('#search-submit').addEventListener('click', ()=> {
+        const query = searchField.value.trim();
+        showMatches(query);
+    });
+}
 
 function addEmployeeCards() {
     // Create and add a card for each employee
@@ -125,4 +163,4 @@ fetch(employeesURL)
     .then(response => response.json())
     .then(data => employees = data.results)
     .then(addEmployeeCards)
-    // add searchBar
+    .then(addSearchBar);

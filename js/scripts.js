@@ -34,7 +34,8 @@ function addEmployeeCards() {
 
         // EVENT LISTENER - employee card - opens modal with more info on employee
         card.addEventListener('click', (e)=> {
-            // add code to open modal
+            currEmployeeIndex = parseInt(e.target.closest('.card').getAttribute('data-index'), 10);
+            generateModal(currEmployeeIndex);
         });
     });
 }

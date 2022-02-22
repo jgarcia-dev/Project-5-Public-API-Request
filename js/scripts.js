@@ -20,6 +20,17 @@ function showMatches(query) {
     }); 
 }
 
+function formatPhone(phone) {
+    return phone.replace(/-{1}/, ' ');
+}
+
+function formatDOB(dob) {
+    const year = dob.substring(0, 4);
+    const month = dob.substring(5,7);
+    const day = dob.substring(8,10);
+    return `${month}/${day}/${year}`;
+}
+
 
 // ------------------------------------------
 //  CREATE/ADD ELEMENT FUNCTIONS
@@ -95,9 +106,9 @@ function generateModal(index) {
                 <p class="modal-text">${employee.email}</p>
                 <p class="modal-text cap">${employee.location.city}</p>
                 <hr>
-                <p class="modal-text">${employee.cell}</p>
+                <p class="modal-text">${formatPhone(employee.cell)}</p>
                 <p class="modal-text">${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state} ${employee.location.postcode}</p>
-                <p class="modal-text"> Birthday: ${employee.dob.date}</p>
+                <p class="modal-text"> Birthday: ${formatDOB(employee.dob.date)}</p>
             </div>
         </div>
         <div class="modal-btn-container">
@@ -148,9 +159,9 @@ function generateModal(index) {
         modalContainer.querySelector('.modal-name').textContent = `${employee.name.first} ${employee.name.last}`;
         modalContainer.getElementsByClassName('modal-text')[0].textContent = employee.email;
         modalContainer.getElementsByClassName('modal-text')[1].textContent =  employee.location.city;
-        modalContainer.getElementsByClassName('modal-text')[2].textContent = employee.cell;
+        modalContainer.getElementsByClassName('modal-text')[2].textContent = formatPhone(employee.cell);
         modalContainer.getElementsByClassName('modal-text')[3].textContent = `${employee.location.street.number} ${employee.location.street.name}, ${employee.location.city}, ${employee.location.state} ${employee.location.postcode}`;
-        modalContainer.getElementsByClassName('modal-text')[4].textContent = employee.dob.date;
+        modalContainer.getElementsByClassName('modal-text')[4].textContent = `Birthday: ${formatDOB(employee.dob.date)}`;
     }
 }
 

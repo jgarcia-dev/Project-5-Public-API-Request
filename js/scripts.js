@@ -8,6 +8,13 @@ let employees;
 //  HELPER FUNCTIONs
 // ------------------------------------------
 
+function displayErrorHTML() {
+    const errorHTML = `
+        <h2>Oops, Something went wrong! Try reloading the page.</h2>
+    ` 
+    galleryEl.insertAdjacentHTML('beforeend', errorHTML);
+}
+
 function showMatches(query) {
     const employeeCards = [...document.getElementsByClassName('card')];
     employeeCards.forEach(card => {
@@ -175,4 +182,7 @@ fetch(employeesURL)
     .then(response => response.json())
     .then(data => employees = data.results)
     .then(addEmployeeCards)
-    .then(addSearchBar);
+    .then(addSearchBar)
+    .catch(error => {
+        displayErrorHTML();
+    });

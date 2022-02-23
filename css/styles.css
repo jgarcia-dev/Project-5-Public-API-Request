@@ -55,7 +55,7 @@ header h1 {
     transition: .4s ease-out;
 }
 
-.search-submit:active, .search-submit:hover, .search-submit:focus {
+.search-submit:active, .search-submit:hover {
     background: #24e6b5;
     border: 1px solid rgba(50, 50, 50, 0.9);
 }

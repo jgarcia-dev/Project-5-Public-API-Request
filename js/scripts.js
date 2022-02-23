@@ -51,7 +51,8 @@ function addSearchBar() {
     const searchField = searchBar.querySelector('#search-input');
 
     // EVENT lISTENER - search bar submit - initiates search based on search field
-    searchBar.querySelector('#search-submit').addEventListener('click', ()=> {
+    searchBar.querySelector('#search-submit').addEventListener('click', (e)=> {
+        e.preventDefault();
         const query = searchField.value.trim();
         showMatches(query);
     });

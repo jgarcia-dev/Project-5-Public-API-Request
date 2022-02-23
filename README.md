@@ -10,3 +10,10 @@ Data displayed for each employee:
 - location
 
 Clicking on an employee image or name will open a modal window with more detailed information about employee, such as birthday and address. 
+
+Updates to page styles:
+- Changed background color for body, cards, modal, and search button.
+- Changed card and search button border color.
+- Changed font colors for headings and text.
+- Changed styling for modal buttons.
+- Changed on hover color or cards and buttons.
